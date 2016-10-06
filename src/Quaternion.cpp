@@ -11,16 +11,16 @@ namespace HM
   Quaternion::Quaternion()
   {
     m_Real = 0.0f;
-    m_Imaginary = Vector3::Zero;
+    m_Imaginary = Vector3f::Zero;
   }
 
   Quaternion::Quaternion(float p_Real, float p_I, float p_J, float p_K)
   {
     m_Real = p_Real;
-    m_Imaginary = Vector3(p_I, p_J, p_K);
+    m_Imaginary = Vector3f(p_I, p_J, p_K);
   }
 
-  Quaternion::Quaternion(float p_Real, const Vector3& p_Imaginary)
+  Quaternion::Quaternion(float p_Real, const Vector3f& p_Imaginary)
   {
     m_Real = p_Real;
     m_Imaginary = p_Imaginary;
@@ -42,7 +42,7 @@ namespace HM
     m_Imaginary.Z = sinHalfZ * cosHalfY * cosHalfX - cosHalfZ * sinHalfY * sinHalfX;
   }
 
-  Quaternion::Quaternion(const Vector3& p_Angles)
+  Quaternion::Quaternion(const Vector3f& p_Angles)
   {
     float cosHalfX = cosf(p_Angles.X * 0.5f);
     float cosHalfY = cosf(p_Angles.Y * 0.5f);
@@ -63,7 +63,7 @@ namespace HM
     return m_Real;
   }
 
-  Vector3 Quaternion::GetImaginary() const
+  Vector3f Quaternion::GetImaginary() const
   {
     return m_Imaginary;
   }
@@ -88,7 +88,7 @@ namespace HM
 
   const Quaternion Quaternion::operator*(const Quaternion& p_Other) const
   {
-    return Quaternion(m_Real * p_Other.GetReal() - Vector3::Dot(m_Imaginary, p_Other.GetImaginary()),
+    return Quaternion(m_Real * p_Other.GetReal() - Vector3f::Dot(m_Imaginary, p_Other.GetImaginary()),
                       m_Imaginary.Y * p_Other.GetImaginary().Z - m_Imaginary.Z * p_Other.GetImaginary().Y + m_Real * p_Other.GetImaginary().X + m_Imaginary.X * p_Other.GetReal(),
                       m_Imaginary.Z * p_Other.GetImaginary().X - m_Imaginary.X * p_Other.GetImaginary().Z + m_Real * p_Other.GetImaginary().Y + m_Imaginary.Y * p_Other.GetReal(),
                       m_Imaginary.X * p_Other.GetImaginary().Y - m_Imaginary.Y * p_Other.GetImaginary().X + m_Real * p_Other.GetImaginary().Z + m_Imaginary.Z * p_Other.GetReal());
@@ -156,7 +156,7 @@ namespace HM
 
   float Quaternion::LengthSquared() const
   {
-    return m_Real * m_Real + Vector3::Dot(m_Imaginary, m_Imaginary);
+    return m_Real * m_Real + Vector3f::Dot(m_Imaginary, m_Imaginary);
   }
 
   void Quaternion::Normalize()
@@ -185,7 +185,7 @@ namespace HM
     float acosR = acosf(m_Real);
     float sinA = sinf(acosR);
 
-    Vector3 ret;
+    Vector3f ret;
 
     if (sinA > 0.0f)
     {
@@ -203,7 +203,7 @@ namespace HM
     float cosL = cosf(iLen);
     float sinL = sinf(iLen);
 
-    Vector3 ret;
+    Vector3f ret;
 
     if (iLen > 0.0f)
     {
@@ -244,7 +244,7 @@ namespace HM
     return Matrix4(m);
   }
 
-  void Quaternion::ToAxisAngle(Vector3& p_Axis, float& p_Angle) const
+  void Quaternion::ToAxisAngle(Vector3f& p_Axis, float& p_Angle) const
   {
     float acosReal = acosf(m_Real);
     float sinInv = 1.0f / sinf(acosReal);
@@ -255,7 +255,7 @@ namespace HM
     p_Axis.Z = m_Imaginary.Z * sinInv;
   }
 
-  Vector3 Quaternion::Rotate(const Vector3& p_Rotation)
+  Vector3f Quaternion::Rotate(const Vector3f& p_Rotation)
   {
     Quaternion temp(0.0f, p_Rotation);
     Quaternion conj(*this);
@@ -264,14 +264,14 @@ namespace HM
     return (*this * temp * conj).m_Imaginary;
   }
 
-  Vector3 Quaternion::EulerAngles(bool p_Homogenous) const
+  Vector3f Quaternion::EulerAngles(bool p_Homogenous) const
   {
     float sqReal = m_Real * m_Real;
     float sqI = m_Imaginary.X * m_Imaginary.X;
     float sqJ = m_Imaginary.Y * m_Imaginary.Y;
     float sqK = m_Imaginary.Z * m_Imaginary.Z;
 
-    Vector3 euler;
+    Vector3f euler;
 
     if (p_Homogenous)
     {
@@ -292,11 +292,11 @@ namespace HM
   // static
   float Quaternion::Dot(const Quaternion& p_QuaternionA, const Quaternion& p_QuaternionB)
   {
-    return p_QuaternionA.GetReal() * p_QuaternionB.GetReal() + Vector3::Dot(p_QuaternionA.GetImaginary(), p_QuaternionB.GetImaginary());
+    return p_QuaternionA.GetReal() * p_QuaternionB.GetReal() + Vector3f::Dot(p_QuaternionA.GetImaginary(), p_QuaternionB.GetImaginary());
   }
 
   // static
-  Quaternion Quaternion::FromAxisAngle(const Vector3& p_Axis, float p_Angle)
+  Quaternion Quaternion::FromAxisAngle(const Vector3f& p_Axis, float p_Angle)
   {
     return Quaternion(cosf(p_Angle / 2.0f), p_Axis * sinf(p_Angle / 2.0f));
   }

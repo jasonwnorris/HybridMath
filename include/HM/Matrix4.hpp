@@ -30,18 +30,18 @@ namespace HM
       bool operator!=(const Matrix4& M) const;
       const Matrix4 operator*(const Matrix4& M) const;
       const Matrix4& operator*=(const Matrix4& M);
-      const Vector3 operator*(const Vector3& p_Vector);
+      const Vector3f operator*(const Vector3f& p_Vector);
 
       void Translate(const float p_X, const float p_Y, const float p_Z);
-      void Translate(const Vector3& p_Vector);
+      void Translate(const Vector3f& p_Vector);
       void Rotate(const float p_X, const float p_Y, const float p_Z);
-      void Rotate(const float p_Angle, const Vector3& p_Axis);
+      void Rotate(const float p_Angle, const Vector3f& p_Axis);
       void RotateX(const float p_Angle);
       void RotateY(const float p_Angle);
       void RotateZ(const float p_Angle);
       void Scale(const float p_X, const float p_Y, const float p_Z);
       void Scale(const float p_Scalar);
-      void Scale(const Vector3& p_Vector);
+      void Scale(const Vector3f& p_Vector);
       float Determinant();
       void Invert();
 

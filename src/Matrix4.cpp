@@ -134,11 +134,11 @@ namespace HM
     return *this;
   }
 
-  const Vector3 Matrix4::operator*(const Vector3& p_Vector)
+  const Vector3f Matrix4::operator*(const Vector3f& p_Vector)
   {
-    return Vector3(p_Vector.X * Elements[0] + p_Vector.Y * Elements[1] + p_Vector.Z * Elements[2] + Elements[3],
-                   p_Vector.X * Elements[4] + p_Vector.Y * Elements[5] + p_Vector.Z * Elements[6] + Elements[7],
-                   p_Vector.X * Elements[8] + p_Vector.Y * Elements[9] + p_Vector.Z * Elements[10] + Elements[11]);
+    return Vector3f(p_Vector.X * Elements[0] + p_Vector.Y * Elements[1] + p_Vector.Z * Elements[2] + Elements[3],
+                    p_Vector.X * Elements[4] + p_Vector.Y * Elements[5] + p_Vector.Z * Elements[6] + Elements[7],
+                    p_Vector.X * Elements[8] + p_Vector.Y * Elements[9] + p_Vector.Z * Elements[10] + Elements[11]);
   }
 
   void Matrix4::Translate(const float p_X, const float p_Y, const float p_Z)
@@ -148,7 +148,7 @@ namespace HM
     Elements[11] += p_Z;
   }
 
-  void Matrix4::Translate(const Vector3& p_Vector)
+  void Matrix4::Translate(const Vector3f& p_Vector)
   {
     Translate(p_Vector.X, p_Vector.Y, p_Vector.Z);
   }
@@ -168,12 +168,12 @@ namespace HM
     (*this) *= _matrixZ;
   }
 
-  void Matrix4::Rotate(const float p_Angle, const Vector3& p_Axis)
+  void Matrix4::Rotate(const float p_Angle, const Vector3f& p_Axis)
   {
     float sinTheta = sinf(p_Angle);
     float cosTheta = cosf(p_Angle);
     float tanTheta = 1.0f - cosTheta;
-    Vector3 unitAxis = p_Axis / p_Axis.Length();
+    Vector3f unitAxis = p_Axis / p_Axis.Length();
 
     Elements[0] += tanTheta * unitAxis.X * unitAxis.X + cosTheta;
     Elements[4] += tanTheta * unitAxis.Y * unitAxis.X + sinTheta * unitAxis.Z;
@@ -235,7 +235,7 @@ namespace HM
     Elements[10] *= p_Scalar;
   }
 
-  void Matrix4::Scale(const Vector3& p_Vector)
+  void Matrix4::Scale(const Vector3f& p_Vector)
   {
     Scale(p_Vector.X, p_Vector.Y, p_Vector.Z);
   }
