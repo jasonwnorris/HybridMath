@@ -45,7 +45,7 @@ namespace HM
       Quaternion Log() const;
       Quaternion Exp() const;
 
-      Matrix3 ToMatrix3() const;
+      Matrix3f ToMatrix3() const;
       Matrix4 ToMatrix4() const;
       void ToAxisAngle(Vector3f& p_Axis, float& p_Angle) const;
       Vector3f Rotate(const Vector3f& p_Rotation);

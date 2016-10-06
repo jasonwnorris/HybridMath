@@ -215,7 +215,7 @@ namespace HM
     return Quaternion(cosL, ret);
   }
 
-  Matrix3 Quaternion::ToMatrix3() const
+  Matrix3f Quaternion::ToMatrix3() const
   {
     float m[9] = {
       1.0f - 2.0f * (m_Imaginary.Y * m_Imaginary.Y + m_Imaginary.Z * m_Imaginary.Z),
@@ -229,7 +229,7 @@ namespace HM
       1.0f - 2.0f * (m_Imaginary.X * m_Imaginary.X + m_Imaginary.Y * m_Imaginary.Y)
     };
 
-    return Matrix3(m);
+    return Matrix3f(m);
   }
 
   Matrix4 Quaternion::ToMatrix4() const
