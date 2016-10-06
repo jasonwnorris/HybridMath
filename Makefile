@@ -12,7 +12,8 @@ COMPILER_FLAGS = \
 
 # Define directories containing headers to include.
 INCLUDE_PATHS = \
-  -I./include
+  -I./include \
+  -I./template
 
 # Define directories containing libraries to include.
 LIBRARY_PATHS = \
@@ -37,7 +38,7 @@ $(EXECUTABLE): $(OBJECT_FILES)
   $(COMPILER) $(COMPILER_FLAGS) $^ -o $@ $(LIBRARY_PATHS) $(LINKER_FLAGS)
 
 $(OBJECT_FILES): obj/%.o : src/%.cpp
-  $(COMPILER) $(COMPILER_FLAGS) -c $< -o $@ $(INCLUDE_PATHS)
+	$(COMPILER) $(COMPILER_FLAGS) -c $< -o $@ $(INCLUDE_PATHS)
 
 clean:
   $(RM) $(EXECUTABLE)

@@ -5,23 +5,32 @@
 
 namespace HM
 {
-  class Rectangle
+  template<typename T> class Rectangle
   {
     public:
-      static const Rectangle Empty;
+      static const Rectangle<T> Empty;
 
       Rectangle();
-      Rectangle(int p_X, int p_Y, int p_Width, int p_Height);
+      Rectangle(T p_X, T p_Y, T p_Width, T p_Height);
       ~Rectangle();
 
-      bool operator==(const Rectangle& p_Other) const;
-      bool operator!=(const Rectangle& p_Other) const;
+      bool operator==(const Rectangle<T>& p_Other) const;
+      bool operator!=(const Rectangle<T>& p_Other) const;
 
-      int X;
-      int Y;
-      int Width;
-      int Height;
+    public:
+      T X;
+      T Y;
+      T Width;
+      T Height;
   };
+
+  using Rectanglei = Rectangle<int>;
+  using Recntagleu = Rectangle<unsigned int>();
+  using Rectanglef = Rectangle<float>;
+  using Rectangled = Rectangle<double>;
 }
+
+// Template Definition Include
+#include <HM/Rectangle.tpp>
 
 #endif
