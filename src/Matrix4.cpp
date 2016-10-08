@@ -170,8 +170,8 @@ namespace HM
 
   void Matrix4::Rotate(const float p_Angle, const Vector3f& p_Axis)
   {
-    float sinTheta = sinf(p_Angle);
-    float cosTheta = cosf(p_Angle);
+    float sinTheta = Math::Sin(p_Angle);
+    float cosTheta = Math::Cos(p_Angle);
     float tanTheta = 1.0f - cosTheta;
     Vector3f unitAxis = p_Axis / p_Axis.Length();
 
@@ -190,8 +190,8 @@ namespace HM
 
   void Matrix4::RotateX(const float p_Angle)
   {
-    float sinTheta = sinf(p_Angle);
-    float cosTheta = cosf(p_Angle);
+    float sinTheta = Math::Sin(p_Angle);
+    float cosTheta = Math::Cos(p_Angle);
 
     Elements[5] += cosTheta;
     Elements[6] += sinTheta;
@@ -201,8 +201,8 @@ namespace HM
 
   void Matrix4::RotateY(const float p_Angle)
   {
-    float sinTheta = sinf(p_Angle);
-    float cosTheta = cosf(p_Angle);
+    float sinTheta = Math::Sin(p_Angle);
+    float cosTheta = Math::Cos(p_Angle);
 
     Elements[0] += cosTheta;
     Elements[2] += -sinTheta;
@@ -212,8 +212,8 @@ namespace HM
 
   void Matrix4::RotateZ(const float p_Angle)
   {
-    float sinTheta = sinf(p_Angle);
-    float cosTheta = cosf(p_Angle);
+    float sinTheta = Math::Sin(p_Angle);
+    float cosTheta = Math::Cos(p_Angle);
 
     Elements[0] += cosTheta;
     Elements[1] += sinTheta;
@@ -338,12 +338,12 @@ namespace HM
   // static
   Matrix4 Matrix4::FromPitchYawRoll(float p_Pitch, float p_Yaw, float p_Roll)
   {
-    float cosX = cosf(p_Pitch);
-    float sinX = sinf(p_Pitch);
-    float cosY = cosf(p_Yaw);
-    float sinY = sinf(p_Yaw);
-    float cosZ = cosf(p_Roll);
-    float sinZ = sinf(p_Roll);
+    float cosX = Math::Cos(p_Pitch);
+    float sinX = Math::Sin(p_Pitch);
+    float cosY = Math::Cos(p_Yaw);
+    float sinY = Math::Sin(p_Yaw);
+    float cosZ = Math::Cos(p_Roll);
+    float sinZ = Math::Sin(p_Roll);
 
     // phi φ = X
     // theta θ = Y
