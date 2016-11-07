@@ -154,4 +154,39 @@ namespace HM
 
     return next;
   }
+
+  float Math::Cos(float p_Angle)
+  {
+    return cosf(p_Angle);
+  }
+
+  float Math::Sin(float p_Angle)
+  {
+    return sinf(p_Angle);
+  }
+
+  float Math::Tan(float p_Angle)
+  {
+    return tanf(p_Angle);
+  }
+
+  float Math::Acos(float p_Angle)
+  {
+    return acosf(p_Angle);
+  }
+
+  float Math::Asin(float p_Angle)
+  {
+    return asinf(p_Angle);
+  }
+
+  float Math::Atan(float p_Angle)
+  {
+    return atanf(p_Angle);
+  }
+
+  float Math::Atan2(float p_Y, float p_X)
+  {
+    return atan2f(p_Y, p_X);
+  }
 }

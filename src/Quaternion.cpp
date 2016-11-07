@@ -28,13 +28,13 @@ namespace HM
 
   Quaternion::Quaternion(float p_X, float p_Y, float p_Z)
   {
-    float cosHalfX = cosf(p_X * 0.5f);
-    float cosHalfY = cosf(p_Y * 0.5f);
-    float cosHalfZ = cosf(p_Z * 0.5f);
+    float cosHalfX = Math::Cos(p_X * 0.5f);
+    float cosHalfY = Math::Cos(p_Y * 0.5f);
+    float cosHalfZ = Math::Cos(p_Z * 0.5f);
 
-    float sinHalfX = sinf(p_X * 0.5f);
-    float sinHalfY = sinf(p_Y * 0.5f);
-    float sinHalfZ = sinf(p_Z * 0.5f);
+    float sinHalfX = Math::Sin(p_X * 0.5f);
+    float sinHalfY = Math::Sin(p_Y * 0.5f);
+    float sinHalfZ = Math::Sin(p_Z * 0.5f);
 
     m_Real = cosHalfZ * cosHalfY * cosHalfX + sinHalfZ * sinHalfY * sinHalfX;
     m_Imaginary.X = cosHalfZ * cosHalfY * sinHalfX - sinHalfZ * sinHalfY * cosHalfX;
@@ -44,13 +44,13 @@ namespace HM
 
   Quaternion::Quaternion(const Vector3f& p_Angles)
   {
-    float cosHalfX = cosf(p_Angles.X * 0.5f);
-    float cosHalfY = cosf(p_Angles.Y * 0.5f);
-    float cosHalfZ = cosf(p_Angles.Z * 0.5f);
+    float cosHalfX = Math::Cos(p_Angles.X * 0.5f);
+    float cosHalfY = Math::Cos(p_Angles.Y * 0.5f);
+    float cosHalfZ = Math::Cos(p_Angles.Z * 0.5f);
 
-    float sinHalfX = sinf(p_Angles.X * 0.5f);
-    float sinHalfY = sinf(p_Angles.Y * 0.5f);
-    float sinHalfZ = sinf(p_Angles.Z * 0.5f);
+    float sinHalfX = Math::Sin(p_Angles.X * 0.5f);
+    float sinHalfY = Math::Sin(p_Angles.Y * 0.5f);
+    float sinHalfZ = Math::Sin(p_Angles.Z * 0.5f);
 
     m_Real = cosHalfZ * cosHalfY * cosHalfX + sinHalfZ * sinHalfY * sinHalfX;
     m_Imaginary.X = cosHalfZ * cosHalfY * sinHalfX - sinHalfZ * sinHalfY * cosHalfX;
@@ -182,8 +182,8 @@ namespace HM
 
   Quaternion Quaternion::Log() const
   {
-    float acosR = acosf(m_Real);
-    float sinA = sinf(acosR);
+    float acosR = Math::Acos(m_Real);
+    float sinA = Math::Sin(acosR);
 
     Vector3f ret;
 
@@ -200,8 +200,8 @@ namespace HM
   Quaternion Quaternion::Exp() const
   {
     float iLen = m_Imaginary.Length();
-    float cosL = cosf(iLen);
-    float sinL = sinf(iLen);
+    float cosL = Math::Cos(iLen);
+    float sinL = Math::Sin(iLen);
 
     Vector3f ret;
 
@@ -246,8 +246,8 @@ namespace HM
 
   void Quaternion::ToAxisAngle(Vector3f& p_Axis, float& p_Angle) const
   {
-    float acosReal = acosf(m_Real);
-    float sinInv = 1.0f / sinf(acosReal);
+    float acosReal = Math::Acos(m_Real);
+    float sinInv = 1.0f / Math::Sin(acosReal);
 
     p_Angle = acosReal * 2.0f;
     p_Axis.X = m_Imaginary.X * sinInv;
@@ -275,15 +275,15 @@ namespace HM
 
     if (p_Homogenous)
     {
-      euler.X = atan2f(2.0f * (m_Imaginary.X * m_Imaginary.Y + m_Imaginary.Z * m_Real), sqI - sqJ - sqK + sqReal);
-      euler.Y = asinf(-2.0f * (m_Imaginary.X * m_Imaginary.Z - m_Imaginary.Y * m_Real));
-      euler.Z = atan2f(2.0f * (m_Imaginary.Y * m_Imaginary.Z + m_Imaginary.X * m_Real), -sqI - sqJ + sqK + sqReal);
+      euler.X = Math::Atan2(2.0f * (m_Imaginary.X * m_Imaginary.Y + m_Imaginary.Z * m_Real), sqI - sqJ - sqK + sqReal);
+      euler.Y = Math::Asin(-2.0f * (m_Imaginary.X * m_Imaginary.Z - m_Imaginary.Y * m_Real));
+      euler.Z = Math::Atan2(2.0f * (m_Imaginary.Y * m_Imaginary.Z + m_Imaginary.X * m_Real), -sqI - sqJ + sqK + sqReal);
     }
     else
     {
-      euler.X = atan2f(2.0f * (m_Imaginary.Z * m_Imaginary.Y + m_Imaginary.X * m_Real), 1.0f - 2.0f * (sqI + sqJ));
-      euler.Y = asinf(-2.0f * (m_Imaginary.X * m_Imaginary.Z - m_Imaginary.Y * m_Real));
-      euler.Z = atan2f(2.0f * (m_Imaginary.X * m_Imaginary.Y + m_Imaginary.Z * m_Real), 1.0f - 2.0f * (sqJ + sqK));
+      euler.X = Math::Atan2(2.0f * (m_Imaginary.Z * m_Imaginary.Y + m_Imaginary.X * m_Real), 1.0f - 2.0f * (sqI + sqJ));
+      euler.Y = Math::Asin(-2.0f * (m_Imaginary.X * m_Imaginary.Z - m_Imaginary.Y * m_Real));
+      euler.Z = Math::Atan2(2.0f * (m_Imaginary.X * m_Imaginary.Y + m_Imaginary.Z * m_Real), 1.0f - 2.0f * (sqJ + sqK));
     }
 
     return euler;
@@ -298,7 +298,7 @@ namespace HM
   // static
   Quaternion Quaternion::FromAxisAngle(const Vector3f& p_Axis, float p_Angle)
   {
-    return Quaternion(cosf(p_Angle / 2.0f), p_Axis * sinf(p_Angle / 2.0f));
+    return Quaternion(Math::Cos(p_Angle / 2.0f), p_Axis * Math::Sin(p_Angle / 2.0f));
   }
 
   // static
@@ -329,9 +329,9 @@ namespace HM
 
     if (dot < 0.95f)
     {
-      float angle = acosf(dot);
+      float angle = Math::Acos(dot);
 
-      return (p_QuaternionA * sinf(angle * (1.0f - p_Amount)) + ret * sinf(angle * p_Amount)) / sinf(angle);
+      return (p_QuaternionA * Math::Sin(angle * (1.0f - p_Amount)) + ret * Math::Sin(angle * p_Amount)) / Math::Sin(angle);
     }
 
     return Quaternion::Lerp(p_QuaternionA, ret, p_Amount);
@@ -344,9 +344,9 @@ namespace HM
 
     if (dot > -0.95f && dot < 0.95f)
     {
-      float angle = acosf(dot);
+      float angle = Math::Acos(dot);
 
-      return (p_QuaternionA * sinf(angle * (1.0f - p_Amount)) + p_QuaternionB * sinf(angle * p_Amount)) / sinf(angle);
+      return (p_QuaternionA * Math::Sin(angle * (1.0f - p_Amount)) + p_QuaternionB * Math::Sin(angle * p_Amount)) / Math::Sin(angle);
     }
 
     return Quaternion::Lerp(p_QuaternionA, p_QuaternionB, p_Amount);

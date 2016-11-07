@@ -45,6 +45,14 @@ namespace HM
 
       static bool IsPowerOfTwo(int p_Number);
       static int NextPowerOfTwo(int p_Number);
+
+      static float Cos(float p_Angle);
+      static float Sin(float p_Angle);
+      static float Tan(float p_Angle);
+      static float Acos(float p_Angle);
+      static float Asin(float p_Angle);
+      static float Atan(float p_Angle);
+      static float Atan2(float p_Y, float p_X);
   };
 }
 

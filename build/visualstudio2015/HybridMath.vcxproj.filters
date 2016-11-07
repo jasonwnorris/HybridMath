@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{721a6c92-8916-47b2-a17e-06b456ee1af3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{9bfbb223-d16a-4d52-b9bc-8a61026be052}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="template">
+      <UniqueIdentifier>{86834622-b397-45e1-8018-89bd471704be}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\HM\HybridMath.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\HM\Math.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\HM\Matrix3.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\HM\Matrix4.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\HM\Quaternion.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\HM\Rectangle.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\HM\Vector2.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\HM\Vector3.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\template\HM\Vector3.tpp">
+      <Filter>template</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\template\HM\Rectangle.tpp">
+      <Filter>template</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\template\HM\Vector2.tpp">
+      <Filter>template</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\template\HM\Matrix3.tpp">
+      <Filter>template</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Math.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Matrix4.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Quaternion.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
